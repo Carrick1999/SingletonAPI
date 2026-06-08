@@ -1,3 +1,7 @@
+// MIT License
+// Copyright (c) 2025 Chujh (QQ: 1206569273)
+// See the LICENSE file in the project root for full license text.
+
 /**
  * @file SingletonAPI.h
  * @brief 轻量级线程安全可观察 Key-Value 存储 + 事件总线

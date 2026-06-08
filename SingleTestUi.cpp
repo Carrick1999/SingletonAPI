@@ -1,3 +1,7 @@
+// MIT License
+// Copyright (c) 2025 Chujh (QQ: 1206569273)
+// See the LICENSE file in the project root for full license text.
+
 #include "singletestui.h"
 #include "ui_singletestui.h"
 #include <QDebug>
