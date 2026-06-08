@@ -502,38 +502,6 @@ for (auto& info : subs) {
 // 获取统计信息
 qDebug() << "统计:" << api.statistics();
 // 输出示例: "值: 42, 订阅: 15, 通配符: 3"
-🤝 贡献指南
-报告问题
-
-在 Issues
-中描述问题
-
-提供最小可复现代码
-
-注明系统环境和 Qt 版本
-
-提交代码
-bash
-# 1. Fork 仓库
-# 2. 创建功能分支
-git checkout -b feature/amazing-feature
-
-# 3. 提交更改
-git commit -m '添加了很棒的功能'
-
-# 4. 推送到分支
-git push origin feature/amazing-feature
-
-# 5. 创建 Pull Request
-开发要求
-
-遵循 Qt 编码规范
-
-为新功能添加单元测试
-
-更新相关文档
-
-保持向后兼容性
 
 📄 许可证
 
@@ -544,12 +512,8 @@ MIT License - 详见 LICENSE
 
 📖 详细文档: 查看头文件注释
 
-🐛 问题反馈: GitHub Issues
-
-💡 功能建议: 在 Issues 中描述
-
 🌟 Star: 如果这个项目对你有帮助
 
 💖 感谢使用 SingletonAPI！
 
-如果你觉得这个库有用，请给它一个 ⭐ 支持我们的工作！
+如果你觉得这个库有用，请给它一个 ⭐ 支持我的开源！
