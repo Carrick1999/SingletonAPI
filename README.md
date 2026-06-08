@@ -1,81 +1,43 @@
 SingletonAPI - Qt C++ 键值存储与事件总线系统
-
 📋 目录
-
 概述
-
 ✨ 特性
-
 🚀 快速开始
-
 📖 核心 API
-
 🔧 使用示例
-
 🧵 线程安全
-
 🏗️ 集成指南
-
 ⚡ 性能优化
-
 📊 使用场景
-
 🤝 贡献指南
-
 📄 许可证
-
 概述
-
 SingletonAPI 是一个为 Qt C++ 应用程序设计的轻量级、线程安全的全局状态管理库。它结合了键值存储和发布-订阅机制，让应用程序的状态管理和组件间通信变得更加简单、可靠。
-
 主要用途：
-
 应用程序全局状态管理
-
 组件间松耦合通信
-
 配置和用户设置存储
-
 事件总线系统
-
 跨线程数据同步
-
 ✨ 特性
 🎯 核心功能
-
 ✅ 键值存储: 线程安全的全局数据存储
-
 ✅ 自动通知: 值变更时自动通知所有订阅者
-
 ✅ 类型安全: 编译时类型检查的泛型读取
-
 ✅ 通配符支持: 使用 *订阅多个相关键
-
 ✅ 前缀匹配: 按前缀批量订阅和管理
-
 🚀 高级特性
-
 ✅ 线程安全: 内置细粒度锁，支持多线程并发访问
-
 ✅ 自动跨线程: Qt 信号槽自动处理线程边界
-
 ✅ 自动清理: 订阅者对象销毁时自动移除订阅
-
 ✅ 变更过滤: 避免相同值的重复通知
-
 ✅ 防抖功能: 防止短时间内频繁触发
-
 ✅ 变更日志: 可选的值变更历史记录
-
 ✅ 批量操作: 合并通知，提高性能
-
 ✅ 管理界面: 完整的订阅和状态监控
-
 🚀 快速开始
 1. 安装
-
 将 SingletonAPI.h和 SingletonAPI.cpp添加到你的 Qt 项目中：
-
 qmake
 # 在你的 .pro 文件中添加
 HEADERS += SingletonAPI.h
@@ -105,311 +67,80 @@ api.subscribe("config/*", [](const QString& key, const QVariant& value) {
 api.setValue("config/theme", "dark");  // 触发上面的订阅回调
 📖 核心 API
 🔧 值操作
-
 方法
-
-
-
 描述
-
-
-
 示例
-
-
-
-
 setValue(key, value, forceNotify)
-
-
-
 设置值并通知订阅者
-
-
-
 api.setValue("counter", 42)
-
-
-
-
 getValue<T>(key, defaultValue)
-
-
-
 类型安全读取
-
-
-
 int x = api.getValue<int>("count")
-
-
-
-
 setValues(map, forceNotify)
-
-
-
 批量设置值
-
-
-
 api.setValues({{"a",1},{"b",2}})
-
-
-
-
 getValues(keys)
-
-
-
 批量获取值
-
-
-
 api.getValues({"a","b"})
-
-
-
-
 remove(key, notify)
-
-
-
 删除键值对
-
-
-
 api.remove("temp", true)
-
-
-
-
 clear(notify)
-
-
-
 清空所有值
-
-
-
 api.clear()
-
 📡 订阅管理
-
 方法
-
-
-
 描述
-
-
-
 示例
-
-
-
-
 subscribe(key, callback, context)
-
-
-
 订阅值更新
-
-
-
 api.subscribe("data", callback, this)
-
-
-
-
 subscribeByPrefix(prefix, callback, context)
-
-
-
 前缀订阅
-
-
-
 api.subscribeByPrefix("config/", callback)
-
-
-
-
 subscribeOnce(key, callback, context)
-
-
-
 一次性订阅
-
-
-
 api.subscribeOnce("init", callback)
-
-
-
-
 unsubscribe(id)
-
-
-
 取消订阅
-
-
-
 api.unsubscribe(subId)
-
-
-
-
 unsubscribeByKey(key)
-
-
-
 取消键的所有订阅
-
-
-
 api.unsubscribeByKey("data")
-
-
-
-
 unsubscribeByOwner(owner)
-
-
-
 取消所有者的所有订阅
-
-
-
 api.unsubscribeByOwner(this)
-
 🔍 查询工具
-
 方法
-
-
-
 描述
-
-
-
 示例
-
-
-
-
 contains(key)
-
-
-
 检查键是否存在
-
-
-
 api.contains("user/name")
-
-
-
-
 keys()
-
-
-
 获取所有键
-
-
-
 QStringList allKeys = api.keys()
-
-
-
-
 keysByPrefix(prefix)
-
-
-
 获取匹配前缀的键
-
-
-
 api.keysByPrefix("sensor/")
-
-
-
-
 removeByPrefix(prefix, notify)
-
-
-
 批量删除键
-
-
-
 api.removeByPrefix("temp/")
-
 📊 监控诊断
-
 方法
-
-
-
 描述
-
-
-
 示例
-
-
-
-
 allSubscriptions()
-
-
-
 获取所有订阅信息
-
-
-
 api.allSubscriptions()
-
-
-
-
 subscriptionCount()
-
-
-
 获取订阅总数
-
-
-
 int count = api.subscriptionCount()
-
-
-
-
 valueCount()
-
-
-
 获取值数量
-
-
-
 int values = api.valueCount()
-
-
-
-
 statistics()
-
-
-
 获取使用统计
-
-
-
 qDebug() << api.statistics()
 
 🔧 使用示例
@@ -684,7 +415,6 @@ public:
         connect(m_timer, &QTimer::timeout, this, &DataCollector::collectData);
         m_timer->start(1000);
     }
-    
 private slots:
     void collectData() {
         SingletonAPI& api = SingletonAPI::instance();
@@ -709,51 +439,12 @@ private slots:
     }
 };
 🤝 贡献指南
-提交问题
-
-在 Issues 页面描述问题
-
-提供复现步骤
-
-包含系统环境和 Qt 版本信息
-
-提交代码
-
-Fork 本仓库
-
-创建功能分支 (git checkout -b feature/amazing-feature)
-
-提交更改 (git commit -m 'Add some amazing feature')
-
-推送到分支 (git push origin feature/amazing-feature)
-
-创建 Pull Request
-
-代码规范
-
-遵循 Qt 编码规范
-
-添加适当的注释
-
-为新功能添加单元测试
-
-更新 README 和文档
-
 📄 许可证
-
 本项目采用 MIT 许可证。详见 LICENSE
 文件。
-
 📞 获取帮助
-
 📖 文档: 查看本 README 和头文件注释
 
 🐛 问题: 提交到 Issues
-
-💡 示例: 查看 examples/目录
-
-🎯 特性请求: 在 Issues 中描述你的需求
-
 Star 这个项目 ⭐ 如果你觉得它有用！
-
 欢迎贡献代码、报告问题或提出改进建议！
