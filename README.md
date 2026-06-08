@@ -1,57 +1,106 @@
 SingletonAPI - Qt C++ 键值存储与事件总线系统
+
 📋 目录
+
 概述
+
 ✨ 特性
+
 🚀 快速开始
+
 📖 核心 API
+
 🔧 使用示例
+
 🧵 线程安全
+
 🏗️ 集成指南
+
 ⚡ 性能优化
+
 📊 使用场景
+
 🤝 贡献指南
+
 📄 许可证
+
 概述
+
 SingletonAPI 是一个为 Qt C++ 应用程序设计的轻量级、线程安全的全局状态管理库。它结合了键值存储和发布-订阅机制，让应用程序的状态管理和组件间通信变得更加简单、可靠。
+
 主要用途：
+
 应用程序全局状态管理
+
 组件间松耦合通信
+
 配置和用户设置存储
+
 事件总线系统
+
 跨线程数据同步
+
 ✨ 特性
+
 🎯 核心功能
+
 ✅ 键值存储: 线程安全的全局数据存储
+
+
 ✅ 自动通知: 值变更时自动通知所有订阅者
+
 ✅ 类型安全: 编译时类型检查的泛型读取
+
 ✅ 通配符支持: 使用 *订阅多个相关键
+
 ✅ 前缀匹配: 按前缀批量订阅和管理
+
 🚀 高级特性
+
 ✅ 线程安全: 内置细粒度锁，支持多线程并发访问
+
 ✅ 自动跨线程: Qt 信号槽自动处理线程边界
+
 ✅ 自动清理: 订阅者对象销毁时自动移除订阅
+
 ✅ 变更过滤: 避免相同值的重复通知
+
 ✅ 防抖功能: 防止短时间内频繁触发
+
 ✅ 变更日志: 可选的值变更历史记录
+
 ✅ 批量操作: 合并通知，提高性能
+
 ✅ 管理界面: 完整的订阅和状态监控
+
 🚀 快速开始
+
 1. 安装
+
 将 SingletonAPI.h和 SingletonAPI.cpp添加到你的 Qt 项目中：
+
 qmake
+
 # 在你的 .pro 文件中添加
+
 HEADERS += SingletonAPI.h
+
 SOURCES += SingletonAPI.cpp
+
 2. 基本使用
+
 cpp
+
 #include "SingletonAPI.h"
+
 #include <QDebug>
-
 // 获取单例实例
-SingletonAPI& api = SingletonAPI::instance();
 
+SingletonAPI& api = SingletonAPI::instance();
 // 设置值
+
 api.setValue("app/name", "MyApplication");
+
 api.setValue("config/version", 1.0);
 
 // 获取值
